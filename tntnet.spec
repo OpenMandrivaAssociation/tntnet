@@ -24,6 +24,7 @@ BuildRoot:	%{_tmppath}/%{name}-root
 BuildRequires:	cxxtools-devel
 BuildRequires:	gnutls-devel
 BuildRequires:	zlib-devel
+BuildRequires:	zip
 
 %description
 Tntnet is a web application server for web applications written in C++.
