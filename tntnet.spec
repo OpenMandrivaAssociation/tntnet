@@ -1,14 +1,9 @@
 
-# (Anssi 01/2008)
-# NOTE: Do not upgrade to 1.6.1+ until vdr-plugin-live is confirmed
-# working with it (building is not enough). It is the only package
-# that is using this thing.
-
 %define name	tntnet
-%define version	1.6.0.1
+%define version	1.6.2
 %define rel	1
 
-%define major	6
+%define major	7
 %define libname	%mklibname tntnet %major
 %define devname	%mklibname tntnet -d
 
@@ -64,7 +59,7 @@ Headers and static library for tntnet development.
 %setup -q
 
 %build
-%configure2_5x
+%configure2_5x --disable-static
 %make
 
 %install
