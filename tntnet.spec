@@ -1,9 +1,9 @@
 
 %define name	tntnet
-%define version	1.6.2
+%define version	1.6.3
 %define rel	1
 
-%define major	7
+%define major	8
 %define libname	%mklibname tntnet %major
 %define devname	%mklibname tntnet -d
 
@@ -15,6 +15,8 @@ License:	LGPLv2.1+
 Group:		System/Servers
 URL:		http://www.tntnet.org/
 Source:		http://www.tntnet.org/download/%name-%version.tar.gz
+Patch0:		tntnet-underlinking.patch
+Patch1:		tntnet-includes.patch
 BuildRoot:	%{_tmppath}/%{name}-root
 BuildRequires:	cxxtools-devel
 BuildRequires:	gnutls-devel
@@ -57,8 +59,11 @@ Headers and static library for tntnet development.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
+autoreconf -fi
 %configure2_5x --disable-static
 %make
 
