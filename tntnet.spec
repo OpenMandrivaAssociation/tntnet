@@ -1,7 +1,7 @@
 
 %define name	tntnet
 %define version	1.6.3
-%define rel	1
+%define rel	2
 
 %define major	8
 %define libname	%mklibname tntnet %major
