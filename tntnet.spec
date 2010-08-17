@@ -3,6 +3,8 @@
 %define version	1.6.3
 %define rel	2
 
+# NOTE: when updating, make sure vdr-plugin-live still builds. -Anssi
+
 %define major	8
 %define libname	%mklibname tntnet %major
 %define devname	%mklibname tntnet -d
