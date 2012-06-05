@@ -1,6 +1,6 @@
 
 %define name	tntnet
-%define version	1.6.3
+%define version	2.1
 %define rel	2
 
 # NOTE: when updating, make sure vdr-plugin-live still builds. -Anssi
@@ -12,14 +12,11 @@
 Summary:	A web application server for web applications written in C++
 Name:		%name
 Version:	%version
-Release:	%mkrel %rel
+Release:	%rel
 License:	LGPLv2.1+
 Group:		System/Servers
 URL:		http://www.tntnet.org/
-Source:		http://www.tntnet.org/download/%name-%version.tar.gz
-Patch0:		tntnet-underlinking.patch
-Patch1:		tntnet-includes.patch
-BuildRoot:	%{_tmppath}/%{name}-root
+Source0:	http://www.tntnet.org/download/%name-%version.tar.gz
 BuildRequires:	cxxtools-devel
 BuildRequires:	gnutls-devel
 BuildRequires:	zlib-devel
@@ -61,8 +58,6 @@ Headers and static library for tntnet development.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
 autoreconf -fi
@@ -70,7 +65,6 @@ autoreconf -fi
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 %multiarch_binaries %{buildroot}%{_bindir}/%{name}-config %{buildroot}%{_bindir}/ecpp*
@@ -78,15 +72,6 @@ rm -rf %{buildroot}
 # TODO: patch to get compliant
 rm -f %{buildroot}/etc/init.d/tntnet
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -n %libname -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %libname -p /sbin/ldconfig
-%endif
 
 %files
 %dir %{_sysconfdir}/%{name}
@@ -112,7 +97,6 @@ rm -rf %{buildroot}
 %{_bindir}/ecpp*
 %{multiarch_bindir}/%{name}-config
 %{multiarch_bindir}/ecpp*
-%{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/tnt
 %{_mandir}/man1/ecppc.*
