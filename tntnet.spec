@@ -16,6 +16,7 @@ Source0:	http://www.tntnet.org/download/%{name}-%{version}.tar.gz
 BuildRequires:	zip
 BuildRequires:	cxxtools-devel
 BuildRequires:	pkgconfig(gnutls)
+BuildRequires:	pkgconfig(libssl)
 BuildRequires:	pkgconfig(zlib)
 
 %description
