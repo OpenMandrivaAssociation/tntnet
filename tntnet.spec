@@ -1,6 +1,6 @@
 # NOTE: when updating, make sure vdr-plugin-live still builds. -Anssi
 
-%define major	8
+%define major	10
 %define libname	%mklibname tntnet %{major}
 %define devname	%mklibname tntnet -d
 
