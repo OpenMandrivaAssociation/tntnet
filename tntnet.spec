@@ -66,7 +66,9 @@ autoreconf -fi
 %install
 %makeinstall_std
 
-%multiarch_binaries %{buildroot}%{_bindir}/%{name}-config %{buildroot}%{_bindir}/ecpp*
+%multiarch_binaries %{buildroot}%{_bindir}/%{name}-config 
+
+%multiarch_binaries %{buildroot}%{_bindir}/ecpp*
 
 # TODO: patch to get compliant
 rm -f %{buildroot}/etc/init.d/tntnet
