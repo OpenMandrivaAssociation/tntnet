@@ -1,26 +1,22 @@
-
-%define name	tntnet
-%define version	2.1
-%define rel	2
-
 # NOTE: when updating, make sure vdr-plugin-live still builds. -Anssi
 
 %define major	8
-%define libname	%mklibname tntnet %major
+%define libname	%mklibname tntnet %{major}
 %define devname	%mklibname tntnet -d
 
 Summary:	A web application server for web applications written in C++
-Name:		%name
-Version:	%version
-Release:	%rel
+Name:		tntnet
+Version:	2.1
+Release:	2
 License:	LGPLv2.1+
 Group:		System/Servers
 URL:		http://www.tntnet.org/
-Source0:	http://www.tntnet.org/download/%name-%version.tar.gz
-BuildRequires:	cxxtools-devel
-BuildRequires:	gnutls-devel
-BuildRequires:	zlib-devel
+Source0:	http://www.tntnet.org/download/%{name}-%{version}.tar.gz
+
 BuildRequires:	zip
+BuildRequires:	cxxtools-devel
+BuildRequires:	pkgconfig(gnutls)
+BuildRequires:	pkgconfig(zlib)
 
 %description
 Tntnet is a web application server for web applications written in C++.
@@ -40,20 +36,20 @@ Requires:	%{name} = %{version}
 %description demos
 Demo web applications for tntnet.
 
-%package -n %libname
+%package -n %{libname}
 Summary:	Shared library of tntnet
 Group:		System/Libraries
 
-%description -n %libname
+%description -n %{libname}
 Tntnet library.
 
-%package -n %devname
+%package -n %{devname}
 Summary:	Headers and static library for tntnet development
 Group:		Development/C++
-Requires:	%libname = %version
-Provides:	tntnet-devel = %version-%release
+Requires:	%{libname} = %{version}
+Provides:	tntnet-devel = %{version}-%release
 
-%description -n %devname
+%description -n %{devname}
 Headers and static library for tntnet development.
 
 %prep
@@ -61,7 +57,9 @@ Headers and static library for tntnet development.
 
 %build
 autoreconf -fi
-%configure2_5x --disable-static
+%configure2_5x \
+	--disable-static
+
 %make
 
 %install
@@ -71,7 +69,6 @@ autoreconf -fi
 
 # TODO: patch to get compliant
 rm -f %{buildroot}/etc/init.d/tntnet
-
 
 %files
 %dir %{_sysconfdir}/%{name}
@@ -88,10 +85,10 @@ rm -f %{buildroot}/etc/init.d/tntnet
 %exclude %{_libdir}/tntnet/tntnet.*
 %{_libdir}/tntnet/*
 
-%files -n %libname
+%files -n %{libname}
 %{_libdir}/*.so.%{major}*
 
-%files -n %devname
+%files -n %{devname}
 %doc AUTHORS README TODO
 %{_bindir}/%{name}-config
 %{_bindir}/ecpp*
@@ -103,3 +100,4 @@ rm -f %{buildroot}/etc/init.d/tntnet
 %{_mandir}/man1/ecppl.*
 %{_mandir}/man1/ecppll.*
 %{_mandir}/man1/tntnet-config.*
+
