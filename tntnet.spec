@@ -7,7 +7,7 @@
 Summary:	A web application server for web applications written in C++
 Name:		tntnet
 Version:	2.1
-Release:	2
+Release:	3
 License:	LGPLv2.1+
 Group:		System/Servers
 URL:		http://www.tntnet.org/
