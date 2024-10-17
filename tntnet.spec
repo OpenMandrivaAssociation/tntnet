@@ -10,7 +10,7 @@ Version:	2.1
 Release:	3
 License:	LGPLv2.1+
 Group:		System/Servers
-URL:		http://www.tntnet.org/
+URL:		https://www.tntnet.org/
 Source0:	http://www.tntnet.org/download/%{name}-%{version}.tar.gz
 
 BuildRequires:	zip
