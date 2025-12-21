@@ -13,6 +13,11 @@ Group:		System/Servers
 URL:		https://www.tntnet.org/
 Source0:	http://www.tntnet.org/download/%{name}-%{version}.tar.gz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	zip
 BuildRequires:	cxxtools-devel
 BuildRequires:	pkgconfig(gnutls)
